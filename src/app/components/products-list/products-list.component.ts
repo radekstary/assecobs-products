@@ -6,7 +6,6 @@ import {
 } from '@angular/common';
 import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products.service';
-import { windowCount } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({

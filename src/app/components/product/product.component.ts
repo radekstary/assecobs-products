@@ -11,14 +11,10 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductComponent {
   product: Product | undefined;
 
-  basePrice:number = 1999;
-
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService
   ) {}
-
-  @Input() layout: string;
 
   ngOnInit(): void {
     this.getProduct();
