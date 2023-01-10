@@ -1,0 +1,12 @@
+<div class="product-system" [ngSwitch]="product.operatingSystem">
+  <span class="system-icon" *ngSwitchCase="'WINDOWS'">
+    <i class="bi bi-windows"></i>
+  </span>
+  <span class="system-icon" *ngSwitchCase="'a'">
+    <i class="bi bi-tools"></i>
+  </span>
+  <span class="system-icon" *ngSwitchDefault>
+    <i class="bi bi-info-circle"></i>
+  </span>
+  <span class="system-name">{{ product.operatingSystem }}</span>
+</div>

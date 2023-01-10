@@ -1,0 +1,82 @@
+#product-list {
+    max-width: 100%;
+    overflow: auto;
+    padding-bottom: 3rem;
+}
+
+#products-data-grid {
+    max-width: 100%;
+    overflow: auto;
+}
+
+.tiles {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+
+  & > .tile {
+    flex: 1 0 240px;
+    max-width: 320px;
+    border: 1px solid rgba(189, 187, 187, 1);
+    border-radius: 4px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    &:hover {
+      cursor: pointer;
+      .bg-overlay {
+        background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255, 255, 255, 0));
+      }
+    }
+  }
+}
+
+.bg-overlay {
+  background: rgba(255, 255, 255, .85);
+  transition: background-color 0.4s ease-in-out;
+  height: 100%;
+}
+
+.product-item {
+  padding: 1rem;
+}
+
+::ng-deep #products-data-grid {
+  .dx-row:hover {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.product-price {
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    display: inline-block;
+    margin: 0 auto 0 1rem;
+}
+
+
+
+
+
+.base-price {
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    justify-content: flex-end;
+    padding: 0.25rem .5rem;
+    min-width: 3.5rem;
+
+    &.bg-orange {
+        background-color: rgba(237, 104, 15, 0.74);
+        color: rgb(255, 237, 221);
+    }
+
+    &.bg-green {
+        background-color: rgba(5, 98, 16, 0.79);
+        color: rgb(224, 235, 225);
+    }
+}

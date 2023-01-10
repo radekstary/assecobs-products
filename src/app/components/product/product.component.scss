@@ -1,0 +1,40 @@
+.go-back {
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 1em;
+}
+
+.product-details {
+    min-height: clamp(50vh, 500px, 80vh);
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+}
+
+
+.product-card {
+    border-radius: 1.5rem;
+}
+
+.product-name {
+    font-weight: 500;
+}
+
+.infobox {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+
+    .infobox-item {
+        display: flex;
+        gap: .5rem;
+    }
+
+    .infobox-text {
+        opacity: .75;
+    }
+
+    .infobox-value {
+        font-weight: 500;
+    }
+}

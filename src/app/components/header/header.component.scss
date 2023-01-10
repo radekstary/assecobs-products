@@ -1,0 +1,10 @@
+#header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../assets/img/scott-graham-5fNmWej4tAA-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: clamp(25vh, 260px, 50vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

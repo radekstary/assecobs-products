@@ -1,0 +1,128 @@
+<div id="product-list">
+  <div class="container">
+    <div class="tiles justify-content-sm-end">
+      <div class="tile layout-choice pb-3 d-flex justify-content-end border-0">
+        <dx-button-group
+          [items]="layout"
+          keyExpr="style"
+          selectionMode="single"
+          [(selectedItemKeys)]="selectedLayout"
+        >
+        </dx-button-group>
+      </div>
+    </div>
+    <div
+      class="product-list product-list--tiles"
+      *ngIf="selectedLayout[0] === 'tiles'"
+    >
+      <div class="tiles">
+        <div
+          class="tile shadow-lg"
+          *ngFor="let product of products"
+          routerLink="/product/{{ product.productId }}"
+          style="background-image: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.95),
+          rgba(255, 255, 255, 0.4)
+        ), url({{ product.productImage }});"
+        >
+          <div class="bg-overlay d-flex flex-column p-3">
+            <h3 class="product-name fw-semibold px-3">
+              {{ product.productName | lowercase }}
+            </h3>
+            <h4 class="product-name-description fw-light px-3 mb-3">
+              {{ product.productNameDescription }}
+            </h4>
+            <div class="px-3 pb-3">
+              <app-system-icon [product]="product"></app-system-icon>
+            </div>
+            <div
+              class="product-price mt-auto"
+              [ngClass]="{
+                'base-price': true,
+                'bg-green': product.basePrice < 500,
+                'bg-orange': product.basePrice >= 500
+              }"
+            >
+              {{ product.basePrice | currency : "PLN" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedLayout[0] === 'list'">
+      <dx-data-grid
+        id="products-data-grid"
+        [dataSource]="products"
+        keyExpr="productId"
+        [allowColumnReordering]="true"
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        (onRowClick)="navigateTo($event)"
+      >
+        <dxi-column
+          dataField="productName"
+          headerCellTemplate="Nazwa produktu"
+          [sortIndex]="1" sortOrder="asc"
+        ></dxi-column>
+        <dxi-column
+          dataField="productNameDescription"
+          headerCellTemplate="Opis produktu"
+        ></dxi-column>
+        <dxi-column
+          dataField="operatingSystem"
+          headerCellTemplate="System operacyjny"
+        >
+        </dxi-column>
+        <dxi-column
+          dataField="lastReleaseDate"
+          dataType="date"
+          cellTemplate="releaseDateCellTemplate"
+          headerCellTemplate="Ostatnie wydanie"
+        >
+        </dxi-column>
+        <div *dxTemplate="let data of 'releaseDateCellTemplate'">
+          <div>
+            {{ data.value | date : "yyyy-MM-dd" }}
+          </div>
+        </div>
+
+        <dxi-column
+          dataField="lastVersion"
+          headerCellTemplate="Najnowsza wersja"
+        ></dxi-column>
+        <dxi-column
+          dataField="basePrice"
+          dataType="number"
+          cellTemplate="priceCellTemplate"
+          headerCellTemplate="Cena bazowa"
+        >
+        </dxi-column>
+        <div *dxTemplate="let data of 'priceCellTemplate'" >
+          <div
+            [ngClass]="{
+              'base-price': true,
+              'bg-green': data.value < 500,
+              'bg-orange': data.value >= 500
+            }"
+          >
+            {{ data.value | number : "1.2-2" }}
+          </div>
+        </div>
+        <dxi-column
+          dataField="description"
+          name="Opis"
+          [visible]="false"
+        ></dxi-column>
+        <dxi-column dataField="maxNumberOfUsers" [visible]="false"></dxi-column>
+        <dxi-column dataField="productUrl" [visible]="false"></dxi-column>
+        <dxo-column-chooser
+          [enabled]="true"
+          title="Dostosuj układ"
+        ></dxo-column-chooser>
+        <dxo-selection mode="single"></dxo-selection>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>

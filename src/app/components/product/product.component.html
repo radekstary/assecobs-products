@@ -1,0 +1,73 @@
+<div class="container">
+  <a class="go-back link-secondary" routerLink="/">
+    <i class="bi bi-arrow-return-left"></i> Powrót do listy produktów
+  </a>
+</div>
+<div
+  *ngIf="product"
+  class="product-details"
+  style="background-image: url({{ product.productImage }});"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-lg-7">
+        <div class="card product-card shadow-lg mt-5">
+          <div class="card-body">
+            <div class="product-name-description mb-1 ">
+              {{ product.productNameDescription }}
+            </div>
+            <h2 class="product-name mb-3" #productName>
+              {{ product.productName | lowercase }}
+            </h2>
+            <div class="row">
+              <div class="col-sm-7">
+                <div class="infobox">
+                  <div class="infobox-item">
+                    <div class="infobox-text">System:</div>
+                    <div class="infobox-value">
+                      <app-system-icon [product]="product"></app-system-icon>
+                    </div>
+                  </div>
+                  <div class="infobox-item">
+                    <div class="infobox-text">Najnowsza wersja:</div>
+                    <div class="infobox-value">{{ product.lastVersion }}</div>
+                  </div>
+                  <div class="infobox-item">
+                    <div class="infobox-text">Ostatnie wydanie:</div>
+                    <div class="infobox-value">
+                      {{ product.lastReleaseDate | slice : 0 : 10 }}
+                    </div>
+                  </div>
+                  <div class="infobox-item">
+                    <div class="infobox-text">Maks. liczba użytkowników:</div>
+                    <div class="infobox-value">
+                      {{ product.maxNumberOfUsers }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-5 py-3">
+                <h3
+                  class="product-price d-inline-block border-bottom border-2 pb-2"
+                >
+                  <span class="price-text text-muted fs-6">Cena: <br /></span>
+                  <span class="price-value">{{
+                    product.basePrice | currency : "PLN"
+                  }}</span>
+                </h3>
+              </div>
+            </div>
+            <p class="fs-6 mt-3">{{ product.description }}</p>
+            <p>{{ product.variantDescription }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 404 -->
+<div *ngIf="!product">
+  <h2>Nie znaleźliśmy takiego produktu.</h2>
+  <p class="fs-6">Może poniżej znajdziesz to, czego szukasz?</p>
+  <app-products-list [ngClass]="'product-list--tiles'"></app-products-list>
+</div>
